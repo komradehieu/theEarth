@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Bootstrap Stuff -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1/new.min.css">
+    <link rel="stylesheet" href="main.css">
+    <title>The Earth Object</title>
+    <script src="earth.js" defer></script>
+    <script>
+      window.onload = () => {
+        let display = document.getElementById("theEarthObjectsDisplay")
+        json = JSON.stringify(theEarthObjectJS, null, 2);
+        // user123444555621 Stack overflow legend
+        function syntaxHighlight(json) {
+          json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+              var cls = 'number';
+              if (/^"/.test(match)) {
+                  if (/:$/.test(match)) {
+                      cls = 'key';
+                  } else {
+                      cls = 'string';
+                  }
+              } else if (/true|false/.test(match)) {
+                  cls = 'boolean';
+              } else if (/null/.test(match)) {
+                  cls = 'null';
+              }
+              return '<span class="' + cls + '">' + match + '</span>';
+          });
+      }
+        display.innerHTML = syntaxHighlight(json);
+      }
+    </script>
+  </head>
+  <body>
+    <img class="logo" src="./assets/earthObject.png"/>
+    <blockquote>
+      <h1>The Earth Object.</h1> 
+      <p>Everything on earth could be contained in a single JSON object:</p>
+    </blockquote>
+    <pre id="theEarthObjectsDisplay"></pre>
+    <blockquote>
+      <p>If you would like to add to this amazing object please click here!</p>
+      <!-- :last-child on blockquote so added single style to button-->
+      <a href="https://github.com/iarobinson/theEarthObject"><button style="padding-bottom: 6px;">Contribute</button></a>
+    </blockquote>
+    
+</body>
+</html>
